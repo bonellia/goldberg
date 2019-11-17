@@ -62,33 +62,79 @@ class Shape:
     def setPosition(self, x, y):
         self.__body.position = x, y
 
-
 class Ball(Shape):
-    """ Ball class consists of Bowling, Tennis and Marble objects.
+    """ Ball class consists of Bowling, Tennis and Marble Balls.
         Could use multiple inheritance, but looked unintuitive.  """
     
     def __init__(self, ball_type="Marble"):
         if ball_type == "Bowling":
             self.ball_moment = pymunk.moment_for_circle(30, 0, 30)
-            self.ball_body = pymunk.Body(30, self.ball_moment)
+            self.ball_body = pymunk.Body(30, self.ball_moment)            
             self.ball_shape = pymunk.Circle(self.ball_body, 30)
             self.ball_shape.elasticity = 0.65
-            self.ball_shape.friction = 0.94
+            self.ball_shape.friction = 0.34
             
         elif ball_type == "Tennis":
             self.ball_moment = pymunk.moment_for_circle(8, 0, 8)
-            self.ball_body = pymunk.Body(8, self.ball_moment)
+            self.ball_body = pymunk.Body(8, self.ball_moment)            
             self.ball_shape = pymunk.Circle(self.ball_body, 8)
             self.ball_shape.elasticity = 0.728
             self.ball_shape.friction = 0.51
-        else:
+        elif ball_type == "Marble":
             self.ball_moment = pymunk.moment_for_circle(5, 0, 5)
             self.ball_body = pymunk.Body(1, self.ball_moment)
             self.ball_shape = pymunk.Circle(self.ball_body, 5)
             self.ball_shape.elasticity = 0.1
             self.ball_shape.friction = 0.94
+        else:
+            print("This shouldn't happen. Enter valid ball type!(Bowling, Tennis, Marble)")
         super().__init__(self.ball_body, self.ball_shape)
 
+
+
+class Block(Shape):
+    """ Block class consists of Domino and Book blocks.
+        Could use multiple inheritance, but looked unintuitive.  """
+    
+    def __init__(self, block_type="Domino"):
+        if block_type == "Book":
+            self.block_shape = pymunk.Poly(None, ((0,0),(20,0),(20,40),(0,40)))
+            self.block_moment = pymunk.moment_for_poly(15, self.block_shape.get_vertices())
+            self.block_body = pymunk.Body(2, self.block_moment)            
+            self.block_shape.elasticity = 0.1
+            self.block_shape.friction = 0.94
+            
+        elif block_type == "Domino":
+            self.block_shape = pymunk.Poly(None, ((0,0),(2,0),(2,4),(0,4)))
+            self.block_moment = pymunk.moment_for_poly(15, self.block_shape.get_vertices())
+            self.block_body = pymunk.Body(2, self.block_moment)  
+            self.block_shape.elasticity = 0.2
+            self.block_shape.friction = 0.51
+        else:
+            print("This shouldn't happen. Enter valid ball type!(Book, Domino)")
+        super().__init__(self.block_body, self.block_shape)
+
+class Segment(Shape):
+    """ Segment class consists of Fixed and Rotating segments.
+        Could use multiple inheritance, but looked unintuitive.  """
+    
+    def __init__(self, segment_type="Fixed"):
+        if segment_type == "Fixed":
+            self.segment_moment = pymunk.moment_for_segment(20, (75,75), (800,15), 5)
+            self.segment_body = pymunk.Body(20, self.segment_moment, body_type=pymunk.Body.KINEMATIC)
+            self.segment_shape = pymunk.Segment(self.segment_body, (75,75), (800,15), 5)
+            self.segment_shape.elasticity = 0.1
+            self.segment_shape.friction = 0.94
+            
+        elif segment_type == "Rotating":
+            self.segment_moment = pymunk.moment_for_segment(20, (75,75), (800,15), 5)
+            self.segment_body = pymunk.Body(20, self.segment_moment)
+            self.segment_shape = pymunk.Segment(self.segment_body, (75,75), (800,15), 5)
+            self.segment_shape.elasticity = 0.1
+            self.segment_shape.friction = 0.94
+        else:
+            print("This shouldn't happen. Enter valid ball type!(Book, Domino)")
+        super().__init__(self.segment_body, self.segment_shape)
 
 # Init tests.
 window = pyglet.window.Window(1280, 720, "Pymunk Tester", resizable=False)
@@ -102,8 +148,12 @@ board1 = Board(1280, 720, "TestBoard")
 marble1 = Ball('Bowling')
 marble2 = Ball('Bowling')
 # Add marbles into the board.
-board1.addShape(shape=marble1, x=50, y=100)
-board1.addShape(shape=marble2, x=250, y=350)
+board1.addShape(shape=marble1, x=250, y=550)
+board1.addShape(shape=marble2, x=350, y=350)
+# Create a segment.
+segment1 = Segment("Fixed")
+# Add segment into the board.
+board1.addShape(shape=segment1, x=50, y=50)
 
 # View the board using Pyglet
 @window.event

@@ -21,7 +21,7 @@ circle_shape = pymunk.Circle(circle_body, radius)
 
 ceiling_moment = pymunk.moment_for_segment(mass, (0,0), (800, 0), 5)
 ceiling_body = pymunk.Body(mass, ceiling_moment, body_type=pymunk.Body.KINEMATIC)
-ceiling_shape = pymunk.Segment(ceiling_body, (0,0), (800, 0), 2)
+ceiling_shape = pymunk.Segment(ceiling_body, (0,0), (800, 0), 5)
 ceiling_body.position = 100, 700
 
 poly_shape = pymunk.Poly.create_box(None, size=(50,50))
@@ -35,7 +35,7 @@ segment_body = pymunk.Body(mass, segment_moment)
 segment_shape = pymunk.Segment(segment_body, (0,0), (0,400), 2)
 segment_body.position = 400, 100
 
-# Counter cloock-wise
+# Counter clock-wise
 triangle_shape = pymunk.Poly(None, ((0,0), (100, 0), (50, 100)))
 triangle_moment = pymunk.moment_for_poly(mass, triangle_shape.get_vertices())
 triangle_body = pymunk.Body(mass, triangle_moment)
