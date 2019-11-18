@@ -16,7 +16,7 @@ class User:
         print("A user has been created with the name", self.user_name, "and current user count is:", User.user_count)
     
     def get(self):
-        return self.name
+        return self.user_name
     
     def rename(self, newname="Player++"):
         oldname = self.name
