@@ -19,9 +19,9 @@ class User:
         return self.user_name
     
     def rename(self, newname="Player++"):
-        oldname = self.name
+        oldname = self.user_name
         self.user_name = newname
-        print("Player  \'", oldname, "\' has been renamed to  \'", self.name, "\'")
+        print("Player  \'", oldname, "\' has been renamed to  \'", self.user_name, "\'")
 
 class Board:
     board_count = 0
