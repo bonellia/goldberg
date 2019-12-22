@@ -1,0 +1,5 @@
+#!/mnt/c/Users/Kril/Google Drive/edu/20191/445/goldberg/gbvenv/bin/python3
+from django.core import management
+
+if __name__ == "__main__":
+    management.execute_from_command_line()

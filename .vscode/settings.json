@@ -1,5 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\Kril\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.pythonPath": "gbvenv/bin/python",
+    "python.linting.pylintPath": "gbvenv/bin/pylint",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }
