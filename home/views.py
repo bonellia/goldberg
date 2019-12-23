@@ -7,6 +7,6 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
-def home():
+def home(request):
 	
-	return ""
+	return HttpResponse("Hello, world. You're at the polls index.")
