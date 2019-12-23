@@ -1,5 +1,6 @@
 {
-    "python.pythonPath": "C:\\Users\\Kril\\AppData\\Local\\Programs\\Python\\Python38\\python.exe",
+    "python.autoComplete.extraPaths": ["home"],
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true
+    "python.linting.enabled": true,
+    "python.pythonPath": "c:\\coding\\goldberg\\gbve\\Scripts\\python.exe",
 }
