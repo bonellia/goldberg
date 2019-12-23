@@ -3,4 +3,5 @@
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.pythonPath": "c:\\coding\\goldberg\\gbve\\Scripts\\python.exe",
+    "python.linting.pylintPath": "c:\\coding\\goldberg\\gbve\\Scripts\\pylint.exe"
 }
